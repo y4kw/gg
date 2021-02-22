@@ -3,6 +3,7 @@ package com.example.gg;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -11,11 +12,13 @@ import android.webkit.WebViewClient;
 public class MainActivity extends Activity {
 
     WebView webView;
+    //Bundle savedInstanceState = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //SystemClock.sleep(1000);
         //setContentView(R.layout.main);
         //setContentView(R.layout.webViewp);
 
@@ -25,21 +28,26 @@ public class MainActivity extends Activity {
 
         webView = (WebView)findViewById(R.id.webView);
 
+       // SystemClock.sleep(1000);
+
         webView.setWebViewClient(new WebViewClient() {
             private int running = 0; // Could be public if you want a timer to check.
             //private int running = 0; // Could be public if you want a timer to check.
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
+
                 Log.d("sholdOverrideUrlLoading","value: " + running);
                 running++;
                 Log.d("sholdOverrideUrlLoading","value: " + running);
                 webView.loadUrl(urlNewString);
-                return true;
+                //return true; //do not call onPageStarted()
+                return false; //       call onPageStarted()
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(webView, url, favicon);
                 Log.d("onPageStarted","value: " + running);
                 running = Math.max(running, 1); // First request move it to 1.
                 Log.d("onPageStarted","value: " + running);
@@ -54,10 +62,17 @@ public class MainActivity extends Activity {
                     // TODO: finished... if you want to fire a method.
                     Log.d("onPageFinished","value: " + running);
                     //webView.reload();
+                    Log.d("onPageFinished","Comming to reload");
+                    SystemClock.sleep(1000);
                     webView.loadUrl( "javascript:window.location.reload( true )" );
                     Log.d("onPageFinished","javascript reload called");
                 }
+                else {
+                    SystemClock.sleep(1000);
+                }
             }
+
+
         });
 
 
