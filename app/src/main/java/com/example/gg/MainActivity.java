@@ -64,7 +64,8 @@ public class MainActivity extends Activity {
                     //webView.reload();
                     Log.d("onPageFinished","Comming to reload");
                     SystemClock.sleep(1000);
-                    webView.loadUrl( "javascript:window.location.reload( true )" );
+                    //webView.loadUrl( "javascript:window.location.reload( true )" );
+                    webView.loadUrl(url);
                     Log.d("onPageFinished","javascript reload called");
                 }
                 else {
@@ -85,6 +86,7 @@ public class MainActivity extends Activity {
         //webView.loadUrl("http://www.google.com/");
         String pdfUrl = "http://www.data.jma.go.jp/fcd/yoho/data/jishin/kaisetsu_tanki_latest.pdf";
         String url = "http://docs.google.com/gview?embedded=true&url=" + pdfUrl;
+        //String url = "" + pdfUrl;
 
         //webview.invalidate();
         webView.loadUrl(url);
