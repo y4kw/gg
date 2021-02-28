@@ -37,9 +37,9 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
 
-                Log.d("sholdOverrideUrlLoading","value: " + running);
+                Log.d("PageshouldOverrideUrlLoading","value: " + running);
                 running++;
-                Log.d("sholdOverrideUrlLoading","value: " + running);
+                Log.d("PageshouldOverrideUrlLoading","value: " + running);
                 webView.loadUrl(urlNewString);
                 //return true; //do not call onPageStarted()
                 return false; //       call onPageStarted()
